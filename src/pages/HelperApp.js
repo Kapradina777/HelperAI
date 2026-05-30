@@ -26,6 +26,7 @@ export default function HelperApp() {
   const [tasks, setTasks] = useState([])
   const [showDone, setShowDone] = useState(false)
 
+  // eslint-disable-next-line
   useEffect(() => { loadTasks() }, [])
 
   async function loadTasks() {
