@@ -216,7 +216,12 @@ useEffect(() => { loadAll() }, [weekNum])
             : measurements.map(m=>(
               <div key={m.id} style={card}>
                 <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:8}}>
-                  <div style={{fontWeight:500,fontSize:14}}>День {m.day_number} — {timeLabel(m.time_of_day)}</div>
+                  <div 
+                    style={{fontWeight:500,fontSize:14,cursor:'pointer'}} 
+                    onClick={()=>setSelectedMeasurement(selectedMeasurement?.id===m.id?null:m)}
+                    title={new Date(m.created_at).toLocaleDateString('ru', {day:'numeric',month:'long',year:'numeric'})}>
+                    День {m.day_number} — {timeLabel(m.time_of_day)} 📅
+                  </div>
                   <div style={{fontSize:13,color:'#888'}}>X={m.x_score} Y={m.y_score}</div>
                 </div>
                 {m.answers && Array.isArray(m.answers) && <>

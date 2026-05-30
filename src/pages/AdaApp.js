@@ -117,7 +117,7 @@ export default function AdaApp() {
       y_score: y,
       answers: detailedAnswers,
       week_number: weekNum,
-      day_number: getDayNumber()
+      day_number: getDayNumber(profile.created_at)
     })
 
     setCompleted({ ...completed, [curTime]: true })

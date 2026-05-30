@@ -26,9 +26,12 @@ export function getWeekNumber(startDate) {
   return Math.max(1, diff + 1)
 }
 
-export function getDayNumber() {
-  const day = new Date().getDay()
-  return day === 0 ? 7 : day
+export function getDayNumber(startDate) {
+  const start = new Date(startDate)
+  start.setHours(0, 0, 0, 0)
+  const now = new Date()
+  now.setHours(0, 0, 0, 0)
+  return Math.max(1, Math.floor((now - start) / (24 * 60 * 60 * 1000)) + 1)
 }
 
 // Загрузить вопросы из базы
