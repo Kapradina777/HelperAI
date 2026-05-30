@@ -1,11 +1,10 @@
 import { createClient } from '@supabase/supabase-js'
 
 const supabaseUrl = process.env.REACT_APP_SUPABASE_URL
-const supabaseKey = process.env.REACT_APP_SUPABASE_ANON_KEY
+const supabaseAnonKey = process.env.REACT_APP_SUPABASE_ANON_KEY
 
-export const supabase = createClient(supabaseUrl, supabaseKey)
+export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
-// Получить текущий профиль
 export async function getProfile() {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return null
@@ -17,15 +16,28 @@ export async function getProfile() {
   return data
 }
 
-// Получить номер текущей недели (с момента регистрации)
-export function getWeekNumber() {
-  const start = new Date('2025-01-01')
+// Неделя считается от первого замера, начиная с 1
+export function getWeekNumber(startDate) {
+  const start = startDate ? new Date(startDate) : new Date()
+  start.setHours(0, 0, 0, 0)
   const now = new Date()
-  return Math.floor((now - start) / (7 * 24 * 60 * 60 * 1000)) + 1
+  now.setHours(0, 0, 0, 0)
+  const diff = Math.floor((now - start) / (7 * 24 * 60 * 60 * 1000))
+  return Math.max(1, diff + 1)
 }
 
-// Получить номер дня недели (1-7)
 export function getDayNumber() {
   const day = new Date().getDay()
   return day === 0 ? 7 : day
+}
+
+// Загрузить вопросы из базы
+export async function loadQuestions(timeOfDay) {
+  const { data } = await supabase
+    .from('questions')
+    .select('*')
+    .eq('time_of_day', timeOfDay)
+    .eq('is_active', true)
+    .order('question_index')
+  return data || []
 }

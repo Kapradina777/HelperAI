@@ -44,7 +44,7 @@ export default function AuthPage() {
         {!isLogin && (
           <>
             <label style={s.label}>Имя</label>
-            <input style={s.input} value={name} onChange={e=>setName(e.target.value)} placeholder="Ада" />
+            <input style={s.input} value={name} onChange={e=>setName(e.target.value)} placeholder="Имя" />
           </>
         )}
         <label style={s.label}>Email</label>
