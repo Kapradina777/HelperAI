@@ -33,7 +33,8 @@ export default function AdminApp() {
   const [selectedMeasurement, setSelectedMeasurement] = useState(null)
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
-  useEffect(() => { loadAll() }, [weekNum])
+ // eslint-disable-next-line
+useEffect(() => { loadAll() }, [weekNum])
 
   // Close sidebar on tab select (mobile)
   function selectTab(id) {
