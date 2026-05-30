@@ -156,7 +156,7 @@ export default function AdminApp() {
 
       {/* Mobile topbar */}
       <div className="admin-topbar" style={{display:'none', alignItems:'center', justifyContent:'space-between', padding:'12px 16px', background:'#fff', borderBottom:'1px solid #eee', position:'sticky', top:0, zIndex:10}}>
-        <div style={{fontSize:18,fontWeight:700,color:'#7F77DD'}}>MM</div>
+        <img src="/logo.png" alt="MM" style={{width:40, height:40, objectFit:'contain', marginBottom:4}} />
         <button onClick={()=>setSidebarOpen(true)} style={{padding:'6px 10px', border:'1px solid #ddd', borderRadius:8, background:'transparent', cursor:'pointer', fontSize:18}}>☰</button>
       </div>
 

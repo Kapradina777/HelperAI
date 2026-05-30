@@ -50,7 +50,7 @@ export default function HelperApp() {
     <div style={s.wrap}>
       <div style={s.inner}>
         <div style={s.header}>
-          <div style={s.logo}>MM</div>
+          <img src="/logo.png" alt="MM" style={{width:48, height:48, objectFit:'contain'}} />
           <div style={s.sub}>Привет, {profile?.name}</div>
         </div>
 
